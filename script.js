@@ -12,7 +12,6 @@ function populateBoard(size) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
     container.appendChild(cell);
-    cell.innerHTML = i + 1;
     cell.style.flexBasis = cellSize;
     cell.addEventListener("mouseover", () => highlight(cell));
   }
@@ -21,7 +20,10 @@ function populateBoard(size) {
 populateBoard(size);
 
 //Highlight cells on mouse over
-const highlight = (cell) => (cell.style.backgroundColor = "blue");
+const highlight = (cell) => {
+  const colorInput = document.getElementById("colorSelect");
+  cell.style.backgroundColor = colorInput.value;
+};
 
 //Removes all child nodes from a parent
 function removeAllChildNodes(parent) {
@@ -30,10 +32,10 @@ function removeAllChildNodes(parent) {
   }
 }
 
-//Creates a new drawing board of user inputed size. Currently overflows if input is above 20.
+//Creates a new drawing board of user inputed size up to 100x100
 function newBoard() {
   newSize = prompt("Enter Board Size");
-  if (newSize < 2 || newSize > 20) {
+  if (newSize < 2 || newSize > 100) {
     alert("nope");
     return;
   }
