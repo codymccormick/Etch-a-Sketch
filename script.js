@@ -25,20 +25,20 @@ const highlight = (cell) => {
   cell.style.backgroundColor = colorInput.value;
 };
 
-//Removes all child nodes from a parent
-function removeAllChildNodes(parent) {
-  while (parent.firstChild) {
-    parent.removeChild(parent.firstChild);
-  }
-}
-
 //Creates a new drawing board of user inputed size up to 100x100
 function newBoard() {
-  newSize = prompt("Enter Board Size");
-  if (newSize < 2 || newSize > 100) {
+  size = prompt("Enter Board Size");
+  if (size < 2 || size > 100) {
     alert("nope");
     return;
   }
   removeAllChildNodes(container);
-  populateBoard(newSize);
+  populateBoard(size);
+
+  //Removes all child nodes from a parent
+  function removeAllChildNodes(parent) {
+    while (parent.firstChild) {
+      parent.removeChild(parent.firstChild);
+    }
+  }
 }
