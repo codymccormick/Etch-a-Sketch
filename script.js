@@ -1,5 +1,5 @@
-const container = document.getElementById("container");
-const boardSize = document.getElementById("size");
+const canvas = document.getElementById("canvas");
+const boardSize = document.getElementById("adjustSize");
 
 boardSize.addEventListener("click", newBoard);
 
@@ -11,7 +11,7 @@ function populateBoard(size) {
   for (let i = 0; i < size ** 2; i++) {
     const cell = document.createElement("div");
     cell.classList.add("cell");
-    container.appendChild(cell);
+    canvas.appendChild(cell);
     cell.style.flexBasis = cellSize;
     cell.addEventListener("mouseover", () => highlight(cell));
   }
@@ -29,10 +29,10 @@ const highlight = (cell) => {
 function newBoard() {
   size = prompt("Enter Board Size");
   if (size < 2 || size > 100) {
-    alert("nope");
+    alert("Please choose a number between 2 and 100");
     return;
   }
-  removeAllChildNodes(container);
+  removeAllChildNodes(canvas);
   populateBoard(size);
 
   //Removes all child nodes from a parent
